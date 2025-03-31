@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor Postman a Swagger</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Conversor de Postman a Swagger</h1>
+      <p>Convierte colecciones de Postman a formato YAML para Swagger Editor</p>
+    </header>
+
+    <div class="main-content">
+      <div class="file-section">
+        <h2>Archivo de entrada</h2>
+        <div class="file-actions">
+          <button id="selectFileBtn" class="btn primary">Seleccionar archivo Postman</button>
+          <span id="selectedFileName">Ningún archivo seleccionado</span>
+        </div>
+      </div>
+
+      <div class="editor-section">
+        <div class="editor-container">
+          <h2>JSON Entrada (Postman)</h2>
+          <div id="jsonEditor" class="editor"></div>
+        </div>
+        <div class="editor-container">
+          <h2>YAML Salida (Swagger)</h2>
+          <div id="yamlEditor" class="editor"></div>
+        </div>
+      </div>
+
+      <div class="actions-section">
+        <button id="convertBtn" class="btn primary" disabled>Convertir</button>
+        <button id="saveBtn" class="btn secondary" disabled>Guardar YAML</button>
+        <button id="copyBtn" class="btn" disabled>Copiar al portapapeles</button>
+      </div>
+    </div>
+
+    <div id="logsContainer" class="logs-section">
+      <h3>Registros</h3>
+      <div id="logs"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Conversor Postman a Swagger - v1.0.0</p>
+  </footer>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

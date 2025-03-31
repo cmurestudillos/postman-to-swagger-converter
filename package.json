@@ -1,0 +1,46 @@
+{
+    "name": "postman-to-swagger-converter",
+    "version": "1.0.0",
+    "description": "Conversor de colecciones Postman a formato YAML para Swagger Editor",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "package:mac": "electron-builder build --mac",
+        "package:win": "electron-builder build --windows",
+        "package:linux": "electron-builder build --linux"
+    },
+    "author": "Carlos Mur",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "^27.3.11",
+        "electron-builder": "^24.13.3",
+        "eslint": "^9.22.0",
+        "eslint-config-prettier": "^10.1.1",
+        "eslint-plugin-jsdoc": "^50.6.8",
+        "eslint-plugin-prettier": "^5.2.3",
+        "prettier": "^3.5.3"
+    },
+    "dependencies": {
+        "js-yaml": "^4.1.0",
+        "json-schema-ref-parser": "^9.0.9",
+        "lodash": "^4.17.21"
+    },
+    "build": {
+        "appId": "com.cmurestudillos.postman-to-swagger-converter",
+        "productName": "PtS Converter",
+        "directories": {
+          "output": "release/"
+        },
+        "mac": {
+          "category": "public.app-category.developer-tools",
+          "icon": "assets/icon.icns"
+        },
+        "win": {
+          "icon": "assets/icon.ico"
+        },
+        "linux": {
+          "icon": "assets/icon.png",
+          "category": "Development"
+        }
+      }
+}
