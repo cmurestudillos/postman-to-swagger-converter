@@ -1,147 +1,90 @@
-# Postman a Swagger Converter
+# PostmanToSwagger
 
-Una aplicación de escritorio para convertir colecciones de Postman a formato YAML para Swagger/OpenAPI.
+Una aplicación de escritorio elegante y eficiente que convierte colecciones de Postman a formato YAML para Swagger/OpenAPI 3.0. Simplifica la documentación de APIs transformando tus colecciones de Postman existentes en especificaciones OpenAPI compatibles con Swagger Editor.
 
-## Características
+## ✨ Características
 
-- Interfaz de usuario sencilla e intuitiva
-- Carga de colecciones Postman en formato JSON
-- Conversión automática a formato YAML para Swagger/OpenAPI 3.0
-- Previsualización de JSON de entrada y YAML de salida
-- Guardado del archivo YAML generado
-- Copia del YAML al portapapeles
-- Registro de operaciones
+- 🔄 **Conversión intuitiva**: Transforma colecciones Postman (.json) a YAML OpenAPI 3.0 con un solo clic
+- 👁️ **Vista previa en tiempo real**: Visualiza el JSON de entrada y el YAML de salida en la misma interfaz
+- 📁 **Gestión de archivos sencilla**: Carga y guarda archivos fácilmente con la interfaz nativa
+- 📋 **Copia rápida**: Copia el YAML generado al portapapeles para usarlo en Swagger Editor
+- 🔍 **Inferencia inteligente**: Genera automáticamente esquemas a partir de ejemplos JSON
+- 📊 **Registro detallado**: Visualiza el progreso y los resultados del proceso de conversión
 
-## Instalación
+## 🚀 Instalación
 
-### Requisitos previos
+### Opción 1: Descargar ejecutable
 
-- Node.js (versión 14 o superior)
-- npm o yarn
+Descarga el instalador apropiado para tu sistema operativo desde la sección de [releases](https://github.com/cmurestudillos/postman-to-swagger-converter/releases).
 
-### Instalar dependencias
+### Opción 2: Construir desde el código fuente
 
 ```bash
-# Usando npm
+# Clonar el repositorio
+git clone hhttps://github.com/cmurestudillos/postman-to-swagger-converter.git
+cd postman-to-swagger-converter
+
+# Instalar dependencias
 npm install
 
-# Usando yarn
-yarn install
-```
-
-### Iniciar la aplicación en modo desarrollo
-
-```bash
-# Usando npm
+# Iniciar la aplicación
 npm start
 
-# Usando yarn
-yarn start
-```
-
-### Crear ejecutable para distribución
-
-```bash
-# Usando npm
+# Crear ejecutable (opcional)
 npm run package
-
-# Usando yarn
-yarn package
 ```
 
-Los archivos ejecutables se generarán en la carpeta `dist`.
+## 🖥️ Uso
 
-## Uso
+1. **Seleccionar archivo**: Haz clic en "Seleccionar archivo Postman" para cargar tu colección (.json)
+2. **Convertir**: Presiona el botón "Convertir" para generar el YAML de OpenAPI
+3. **Verificar**: Revisa el resultado generado en el panel derecho
+4. **Exportar**: Guarda el resultado como archivo YAML o cópialo al portapapeles
+5. **Utilizar**: Importa el YAML en [Swagger Editor](https://editor.swagger.io/) o en tu herramienta preferida de OpenAPI
 
-1. Inicia la aplicación
-2. Haz clic en "Seleccionar archivo Postman" para elegir tu colección de Postman (.json)
-3. Revisa el contenido JSON
-4. Haz clic en "Convertir" para generar el YAML de Swagger
-5. Revisa el YAML generado
-6. Utiliza "Guardar YAML" para guardar el archivo o "Copiar al portapapeles" para copiarlo
+## 📘 Guía para mejores resultados
 
-## Estructura del proyecto
+Para obtener conversiones óptimas, se recomienda:
 
-```
-project-root/
-├── package.json             // Configuración del proyecto
-├── main.js                  // Punto de entrada principal de Electron
-├── preload.js               // Script de precarga para comunicación segura
-├── index.html               // Interfaz de usuario principal
-├── styles.css               // Estilos de la aplicación
-├── renderer.js              // Lógica de la interfaz
-└── src/
-    ├── converter.js         // Lógica de conversión de Postman a Swagger
-    ├── models/              // Modelos para representar estructuras de datos
-    │   ├── PostmanCollection.js
-    │   └── SwaggerDocument.js
-    └── utils/               // Utilidades
-        ├── fileUtils.js     // Manejo de archivos
-        └── yamlUtils.js     // Funciones para trabajar con YAML
-```
+- **Organizar en carpetas** tus endpoints en Postman (se convertirán en tags en OpenAPI)
+- **Usar nombres descriptivos** para tus requests
+- **Incluir ejemplos** en los cuerpos de tus requests POST/PUT
+- **Definir variables de entorno** para las URLs base
+- **Documentar tus endpoints** con descripciones en Postman
 
-## Cómo funciona
+## 🛠️ Tecnologías utilizadas
 
-La aplicación realiza los siguientes pasos para convertir una colección de Postman a Swagger:
+- [Electron](https://www.electronjs.org/) - Framework para apps de escritorio
+- [js-yaml](https://github.com/nodeca/js-yaml) - Conversión JSON/YAML
+- [Lodash](https://lodash.com/) - Utilidades JavaScript
+- [Node.js](https://nodejs.org/) - Entorno de ejecución
 
-1. **Carga y análisis**: Carga el archivo JSON de la colección Postman y lo analiza en un objeto JavaScript.
+## 🤝 Contribuciones
 
-2. **Extracción de información**:
-   - Extrae información básica (título, descripción)
-   - Identifica las variables de entorno (como URLs base)
-   - Procesa las carpetas/grupos como tags en Swagger
-   - Analiza cada endpoint, extrayendo método, ruta, parámetros y cuerpo
+Las contribuciones son bienvenidas. Para cambios importantes:
 
-3. **Generación de estructura OpenAPI**:
-   - Crea la estructura básica del documento OpenAPI 3.0
-   - Configura la información general y servidores
-   - Genera las definiciones de rutas (paths)
-   - Infiere esquemas a partir de ejemplos JSON
-   - Organiza endpoints por etiquetas
+1. Primero abre un issue para discutir qué te gustaría cambiar
+2. Haz fork del repositorio
+3. Crea una nueva rama (`git checkout -b feature/amazing-feature`)
+4. Haz commit de tus cambios (`git commit -m 'feat: añadir funcionalidad asombrosa'`)
+5. Haz push a la rama (`git push origin feature/amazing-feature`)
+6. Abre un Pull Request
 
-4. **Conversión a YAML**:
-   - Convierte la estructura del documento a formato YAML
-   - Aplica formato adecuado para legibilidad
+## 📋 Tareas pendientes
 
-5. **Exportación**:
-   - Permite guardar el resultado como archivo YAML
-   - Ofrece opción de copiar al portapapeles
+- [ ] Añadir editor integrado para modificar el YAML generado
+- [ ] Integrar vista previa con Swagger UI
+- [ ] Soportar autenticación y cabeceras complejas
+- [ ] Añadir opciones de personalización del formato
+- [ ] Implementar validación del YAML generado
+- [ ] Conversión inversa (de OpenAPI a Postman)
 
-## Limitaciones
-
-- La aplicación infiere los esquemas a partir de ejemplos, por lo que pueden no ser 100% precisos
-- Las descripciones de parámetros y respuestas son genéricas si no están definidas en Postman
-- Las características avanzadas de OpenAPI (como discriminadores, oneOf, allOf) no se generan automáticamente
-- Las respuestas se generan con códigos estándar (200, 400, 401, 404, 500)
-
-## Desarrollo
-
-### Añadir nuevas características
-
-1. Clona el repositorio
-2. Instala las dependencias: `npm install`
-3. Realiza tus cambios
-4. Prueba la aplicación: `npm start`
-5. Crea un ejecutable: `npm run package`
-
-### Pruebas
-
-Ejecuta las pruebas con:
-
-```bash
-npm test
-```
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
-
-1. Haz fork del repositorio
-2. Crea una rama para tu característica: `git checkout -b nueva-caracteristica`
-3. Haz commit de tus cambios: `git commit -m 'Añade nueva característica'`
-4. Haz push a la rama: `git push origin nueva-caracteristica`
-5. Envía un Pull Request
-
-## Licencia
+## 📄 Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 🙏 Agradecimientos
+
+- [Postman](https://www.postman.com/) por su increíble herramienta para APIs
+- [OpenAPI Initiative](https://www.openapis.org/) por el estándar OpenAPI
+- [Swagger](https://swagger.io/) por sus herramientas de documentación de APIs
