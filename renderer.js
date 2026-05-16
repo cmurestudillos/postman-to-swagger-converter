@@ -16,10 +16,10 @@ const logsElement = document.getElementById('logs');
 function addLog(message, type = 'info') {
   const logEntry = document.createElement('div');
   logEntry.classList.add('log-entry', `log-${type}`);
-  
+
   const timestamp = new Date().toLocaleTimeString();
   logEntry.textContent = `[${timestamp}] ${message}`;
-  
+
   logsElement.appendChild(logEntry);
   logsElement.scrollTop = logsElement.scrollHeight;
 }
@@ -48,12 +48,12 @@ function updateYamlEditor(content) {
 // Manejador para seleccionar archivo
 selectFileBtn.addEventListener('click', async () => {
   const result = await window.electronAPI.openFile();
-  
+
   if (result) {
     const fileName = result.path.split(/[/\\]/).pop();
     selectedFileName.textContent = fileName;
     addLog(`Archivo cargado: ${fileName}`, 'info');
-    
+
     updateJsonEditor(result.content);
     postmanCollection = result.content;
   }
@@ -65,13 +65,13 @@ convertBtn.addEventListener('click', async () => {
     addLog('No hay colección para convertir', 'warning');
     return;
   }
-  
+
   addLog('Iniciando conversión...', 'info');
-  
+
   try {
     const jsonData = JSON.parse(postmanCollection);
     swaggerYaml = await window.electronAPI.convertCollection(jsonData);
-    
+
     if (swaggerYaml) {
       updateYamlEditor(swaggerYaml);
       addLog('Conversión completada con éxito', 'success');
@@ -89,9 +89,9 @@ saveBtn.addEventListener('click', async () => {
     addLog('No hay contenido YAML para guardar', 'warning');
     return;
   }
-  
+
   const saved = await window.electronAPI.saveFile(swaggerYaml);
-  
+
   if (saved) {
     addLog('Archivo YAML guardado correctamente', 'success');
   } else {
@@ -105,8 +105,9 @@ copyBtn.addEventListener('click', () => {
     addLog('No hay contenido YAML para copiar', 'warning');
     return;
   }
-  
-  navigator.clipboard.writeText(swaggerYaml)
+
+  navigator.clipboard
+    .writeText(swaggerYaml)
     .then(() => {
       addLog('Contenido YAML copiado al portapapeles', 'success');
     })

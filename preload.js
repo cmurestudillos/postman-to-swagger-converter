@@ -4,8 +4,8 @@ const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('electronAPI', {
   // Métodos para archivos
   openFile: () => ipcRenderer.invoke('open-file'),
-  saveFile: (content) => ipcRenderer.invoke('save-file', content),
-  
+  saveFile: content => ipcRenderer.invoke('save-file', content),
+
   // Método para conversión
-  convertCollection: (postmanJson) => ipcRenderer.invoke('convert-collection', postmanJson)
+  convertCollection: postmanJson => ipcRenderer.invoke('convert-collection', postmanJson),
 });

@@ -3,14 +3,21 @@
     "version": "1.0.0",
     "description": "Conversor de colecciones Postman a formato YAML para Swagger Editor",
     "main": "main.js",
+    "packageManager": "pnpm@11.1.2",
     "scripts": {
-        "start": "electron .",
-        "package:mac": "electron-builder build --mac",
-        "package:win": "electron-builder build --windows",
-        "package:linux": "electron-builder build --linux"
+      "postinstall": "node node_modules/electron/install.js",
+      "start": "electron .",
+      "package:mac": "electron-builder build --mac",
+      "package:win": "electron-builder build --windows",
+      "package:linux": "electron-builder build --linux",
+      "lint": "eslint src renderer.js main.js preload.js",
+      "format": "prettier --write ."
     },
     "author": "Carlos Mur",
     "license": "MIT",
+    "pnpm": {
+      "onlyBuiltDependencies": ["electron", "electron-winstaller"]
+    },
     "devDependencies": {
         "electron": "^40.6.1",
         "electron-builder": "^26.8.1",
@@ -21,9 +28,8 @@
         "prettier": "^3.5.3"
     },
     "dependencies": {
-        "js-yaml": "^4.1.0",
-        "json-schema-ref-parser": "^9.0.9",
-        "lodash": "^4.17.21"
+      "js-yaml": "^4.1.0",
+      "lodash": "^4.17.21"
     },
     "build": {
         "appId": "com.cmurestudillos.postman-to-swagger-converter",

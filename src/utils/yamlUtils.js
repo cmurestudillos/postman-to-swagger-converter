@@ -9,17 +9,11 @@ const fs = require('fs');
  */
 function objectToYaml(data, options = {}) {
   try {
-    const defaultOptions = {
-      indent: 2,
-      lineWidth: -1, // Sin límite
-      noRefs: true
-    };
-    
-    const yamlOptions = { ...defaultOptions, ...options };
-    return yaml.dump(data, yamlOptions);
+    const defaultOptions = { indent: 2, lineWidth: -1, noRefs: true };
+    return yaml.dump(data, { ...defaultOptions, ...options });
   } catch (error) {
     console.error('Error al convertir objeto a YAML:', error);
-    throw new Error(`No se pudo convertir a YAML: ${error.message}`);
+    throw new Error(`No se pudo convertir a YAML: ${error.message}`, { cause: error });
   }
 }
 
@@ -33,7 +27,7 @@ function yamlToObject(yamlStr) {
     return yaml.load(yamlStr);
   } catch (error) {
     console.error('Error al convertir YAML a objeto:', error);
-    throw new Error(`No se pudo parsear el YAML: ${error.message}`);
+    throw new Error(`No se pudo parsear el YAML: ${error.message}`, { cause: error });
   }
 }
 
@@ -48,7 +42,7 @@ async function readYamlFile(filePath) {
     return yamlToObject(content);
   } catch (error) {
     console.error(`Error al leer el archivo YAML ${filePath}:`, error);
-    throw new Error(`No se pudo leer el archivo YAML: ${error.message}`);
+    throw new Error(`No se pudo leer el archivo YAML: ${error.message}`, { cause: error });
   }
 }
 
@@ -65,7 +59,7 @@ async function writeYamlFile(filePath, data, options = {}) {
     await fs.promises.writeFile(filePath, content, 'utf8');
   } catch (error) {
     console.error(`Error al escribir el archivo YAML ${filePath}:`, error);
-    throw new Error(`No se pudo escribir el archivo YAML: ${error.message}`);
+    throw new Error(`No se pudo escribir el archivo YAML: ${error.message}`, { cause: error });
   }
 }
 
@@ -73,5 +67,5 @@ module.exports = {
   objectToYaml,
   yamlToObject,
   readYamlFile,
-  writeYamlFile
+  writeYamlFile,
 };

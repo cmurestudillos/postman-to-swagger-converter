@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 
 /**
  * Lee un archivo JSON y devuelve su contenido como objeto
@@ -12,7 +11,7 @@ async function readJsonFile(filePath) {
     return JSON.parse(content);
   } catch (error) {
     console.error(`Error al leer el archivo JSON ${filePath}:`, error);
-    throw new Error(`No se pudo leer el archivo JSON: ${error.message}`);
+    throw new Error(`No se pudo leer el archivo JSON: ${error.message}`, { cause: error });
   }
 }
 
@@ -25,14 +24,11 @@ async function readJsonFile(filePath) {
  */
 async function writeJsonFile(filePath, data, pretty = true) {
   try {
-    const content = pretty 
-      ? JSON.stringify(data, null, 2) 
-      : JSON.stringify(data);
-      
+    const content = pretty ? JSON.stringify(data, null, 2) : JSON.stringify(data);
     await fs.promises.writeFile(filePath, content, 'utf8');
   } catch (error) {
     console.error(`Error al escribir el archivo JSON ${filePath}:`, error);
-    throw new Error(`No se pudo escribir el archivo JSON: ${error.message}`);
+    throw new Error(`No se pudo escribir el archivo JSON: ${error.message}`, { cause: error });
   }
 }
 
@@ -47,7 +43,7 @@ async function writeTextFile(filePath, content) {
     await fs.promises.writeFile(filePath, content, 'utf8');
   } catch (error) {
     console.error(`Error al escribir el archivo ${filePath}:`, error);
-    throw new Error(`No se pudo escribir el archivo: ${error.message}`);
+    throw new Error(`No se pudo escribir el archivo: ${error.message}`, { cause: error });
   }
 }
 
@@ -75,7 +71,7 @@ async function ensureDirectoryExists(dirPath) {
     await fs.promises.mkdir(dirPath, { recursive: true });
   } catch (error) {
     console.error(`Error al crear el directorio ${dirPath}:`, error);
-    throw new Error(`No se pudo crear el directorio: ${error.message}`);
+    throw new Error(`No se pudo crear el directorio: ${error.message}`, { cause: error });
   }
 }
 
@@ -84,5 +80,5 @@ module.exports = {
   writeJsonFile,
   writeTextFile,
   fileExists,
-  ensureDirectoryExists
+  ensureDirectoryExists,
 };

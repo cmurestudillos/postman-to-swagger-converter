@@ -21,17 +21,19 @@ Descarga el instalador apropiado para tu sistema operativo desde la sección de 
 
 ```bash
 # Clonar el repositorio
-git clone hhttps://github.com/cmurestudillos/postman-to-swagger-converter.git
+git clone https://github.com/cmurestudillos/postman-to-swagger-converter.git
 cd postman-to-swagger-converter
 
 # Instalar dependencias
-npm install
+pnpm install
 
 # Iniciar la aplicación
-npm start
+pnpm start
 
-# Crear ejecutable (opcional)
-npm run package
+# Crear ejecutable (opcional — elige tu plataforma)
+pnpm run package:win   # Windows
+pnpm run package:mac   # macOS
+pnpm run package:linux # Linux
 ```
 
 ## 🖥️ Uso

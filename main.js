@@ -6,6 +6,7 @@ const { convertPostmanToSwagger } = require('./src/converter');
 // Mantener una referencia global para evitar que la ventana se cierre automáticamente
 let mainWindow;
 
+/** Crea y configura la ventana principal de la aplicación. */
 function createWindow() {
   // Crear la ventana del navegador
   mainWindow = new BrowserWindow({
@@ -14,8 +15,8 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
-      nodeIntegration: false
-    }
+      nodeIntegration: false,
+    },
   });
 
   // Cargar el archivo HTML principal
@@ -52,13 +53,11 @@ app.on('window-all-closed', function () {
 ipcMain.handle('open-file', async () => {
   const { canceled, filePaths } = await dialog.showOpenDialog({
     properties: ['openFile'],
-    filters: [
-      { name: 'Colecciones Postman', extensions: ['json'] }
-    ]
+    filters: [{ name: 'Colecciones Postman', extensions: ['json'] }],
   });
-  
+
   if (canceled) return null;
-  
+
   try {
     const fileContent = fs.readFileSync(filePaths[0], 'utf8');
     return { path: filePaths[0], content: fileContent };
@@ -84,13 +83,11 @@ ipcMain.handle('save-file', async (event, yamlContent) => {
   const { canceled, filePath } = await dialog.showSaveDialog({
     title: 'Guardar archivo YAML',
     defaultPath: 'swagger-definition.yaml',
-    filters: [
-      { name: 'YAML', extensions: ['yaml', 'yml'] }
-    ]
+    filters: [{ name: 'YAML', extensions: ['yaml', 'yml'] }],
   });
-  
+
   if (canceled) return false;
-  
+
   try {
     fs.writeFileSync(filePath, yamlContent, 'utf8');
     return true;
