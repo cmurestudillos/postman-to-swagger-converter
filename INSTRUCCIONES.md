@@ -5,25 +5,25 @@
 ### 1. Requisitos previos
 
 Asegúrate de tener instalado:
-- [Node.js](https://nodejs.org/) (versión 14 o superior)
-- npm (viene con Node.js)
+- [Node.js](https://nodejs.org/) (versión 18 o superior)
+- [pnpm](https://pnpm.io/) — instalar con `npm install -g pnpm`
 
 ### 2. Descarga e instalación
 
 1. Descarga o clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/postman-to-swagger.git
-   cd postman-to-swagger
+   git clone https://github.com/cmurestudillos/postman-to-swagger-converter.git
+   cd postman-to-swagger-converter
    ```
 
 2. Instala las dependencias:
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. Inicia la aplicación:
    ```bash
-   npm start
+   pnpm start
    ```
 
 ### 3. Generar un ejecutable (opcional)
@@ -31,10 +31,12 @@ Asegúrate de tener instalado:
 Si quieres crear un ejecutable para tu sistema operativo:
 
 ```bash
-npm run package
+pnpm run package:win   # Windows
+pnpm run package:mac   # macOS
+pnpm run package:linux # Linux
 ```
 
-Los archivos ejecutables se generarán en la carpeta `dist/`.
+Los archivos ejecutables se generarán en la carpeta `release/`.
 
 ## Uso de la aplicación
 
