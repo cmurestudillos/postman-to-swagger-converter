@@ -19,36 +19,34 @@
       "onlyBuiltDependencies": ["electron", "electron-winstaller"]
     },
     "devDependencies": {
-      "@eslint/js": "^10.0.1",
-      "electron": "^42.1.0",
-      "electron-builder": "^26.8.1",
-      "eslint": "^10.4.0",
-      "eslint-config-prettier": "^10.1.1",
-      "eslint-plugin-jsdoc": "^62.9.0",
-      "eslint-plugin-prettier": "^5.2.3",
-      "globals": "^17.6.0",
-      "prettier": "^3.5.3"
+        "electron": "^40.6.1",
+        "electron-builder": "^26.8.1",
+        "eslint": "^9.22.0",
+        "eslint-config-prettier": "^10.1.1",
+        "eslint-plugin-jsdoc": "^50.6.8",
+        "eslint-plugin-prettier": "^5.2.3",
+        "prettier": "^3.5.3"
     },
     "dependencies": {
       "js-yaml": "^4.1.0",
       "lodash": "^4.17.21"
     },
     "build": {
-      "appId": "com.cmurestudillos.postman-to-swagger-converter",
-      "productName": "PtS Converter",
-      "directories": {
-        "output": "release/"
-      },
-      "mac": {
-        "category": "public.app-category.developer-tools",
-        "icon": "assets/icon.icns"
-      },
-      "win": {
-        "icon": "assets/icon.ico"
-      },
-      "linux": {
-        "icon": "assets/icon.png",
-        "category": "Development"
-      }
+        "appId": "com.cmurestudillos.postman-to-swagger-converter",
+        "productName": "PtS Converter",
+        "directories": {
+            "output": "release/"
+        },
+        "mac": {
+            "category": "public.app-category.developer-tools",
+            "icon": "assets/icon.icns"
+        },
+        "win": {
+            "icon": "assets/icon.ico"
+        },
+        "linux": {
+            "icon": "assets/icon.png",
+            "category": "Development"
+        }
     }
 }
