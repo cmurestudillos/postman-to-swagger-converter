@@ -15,9 +15,6 @@
     },
     "author": "Carlos Mur",
     "license": "MIT",
-    "pnpm": {
-      "onlyBuiltDependencies": ["electron", "electron-winstaller"]
-    },
     "devDependencies": {
         "electron": "^40.6.1",
         "electron-builder": "^26.8.1",
