@@ -75,6 +75,7 @@
   
   .editor-container {
     flex: 1;
+    min-width: 0;
     background-color: var(--container-bg);
     padding: 15px;
     border-radius: 5px;
@@ -91,6 +92,7 @@
     border: 1px solid var(--border-color);
     border-radius: 3px;
     font-family: monospace;
+    white-space: pre;
     overflow: auto;
     padding: 10px;
     background-color: #f8f8f8;
