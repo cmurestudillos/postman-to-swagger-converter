@@ -71,6 +71,22 @@ Para obtener conversiones óptimas, se recomienda:
 - [Lodash](https://lodash.com/) - Utilidades JavaScript
 - [Node.js](https://nodejs.org/) - Entorno de ejecución
 
+## 📦 Publicar una versión
+
+El workflow [`release.yml`](.github/workflows/release.yml) compila los instaladores de Windows (`.exe`), macOS
+(`.dmg`, Apple Silicon) y Linux (`.AppImage`) en GitHub Actions y los sube a un **borrador** de release:
+
+```bash
+# 1. Subir la versión en package.json (y en el pie de index.html) y hacer commit
+# 2. Crear y subir el tag — debe coincidir con la versión de package.json
+git tag -a v1.0.1 -m "v1.0.1"
+git push origin v1.0.1
+```
+
+Cuando terminen los tres builds, revisa el borrador en
+[Releases](https://github.com/cmurestudillos/postman-to-swagger-converter/releases) y publícalo. La web
+de descargas lo detecta automáticamente en cuanto deja de ser borrador.
+
 ## 🌐 Web del proyecto
 
 La carpeta `docs/` contiene la página pública, publicada con **GitHub Pages**:
