@@ -1,6 +1,6 @@
 {
     "name": "postman-to-swagger-converter",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Conversor de colecciones Postman a formato YAML para Swagger Editor",
     "main": "main.js",
     "packageManager": "pnpm@11.1.2",
@@ -34,16 +34,29 @@
         "directories": {
             "output": "release/"
         },
+        "files": [
+            "**/*",
+            "!docs{,/**/*}"
+        ],
+        "publish": {
+            "provider": "github",
+            "owner": "cmurestudillos",
+            "repo": "postman-to-swagger-converter",
+            "releaseType": "draft"
+        },
         "mac": {
             "category": "public.app-category.developer-tools",
-            "icon": "assets/icon.icns"
+            "icon": "assets/icon.icns",
+            "target": [{ "target": "dmg", "arch": ["arm64"] }]
         },
         "win": {
-            "icon": "assets/icon.ico"
+            "icon": "assets/icon.ico",
+            "target": "nsis"
         },
         "linux": {
             "icon": "assets/icon.png",
-            "category": "Development"
+            "category": "Development",
+            "target": "AppImage"
         }
     }
 }
