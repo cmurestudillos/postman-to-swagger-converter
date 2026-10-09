@@ -90,29 +90,46 @@ function processItems(items, swagger, tagName = '') {
  * @returns {{path: string, pathParams: Array, queryParams: Array}} Datos extraídos de la URL
  */
 function extractUrlInfo(url) {
-  if (typeof url === 'string') {
-    return { path: extractPath(url), pathParams: [], queryParams: [] };
-  }
-
   if (!url) {
     return { path: '', pathParams: [], queryParams: [] };
   }
 
-  let path = Array.isArray(url.path) ? '/' + url.path.join('/') : url.path || '';
+  if (typeof url === 'string') {
+    return { ...extractPathParams(extractPath(url)), queryParams: [] };
+  }
+
+  let rawPath;
+  if (Array.isArray(url.path)) {
+    rawPath = '/' + url.path.join('/');
+  } else {
+    rawPath = url.path || extractPath(url.raw || '');
+  }
   const queryParams = url.query && Array.isArray(url.query) ? url.query : [];
+
+  return { ...extractPathParams(rawPath), queryParams };
+}
+
+/**
+ * Normaliza las variables de una ruta al formato OpenAPI y declara sus parámetros
+ * @param {string} rawPath - Ruta con variables `:id`, `{{id}}` o `{id}`
+ * @returns {{path: string, pathParams: Array}} Ruta normalizada y parámetros sin duplicados
+ */
+function extractPathParams(rawPath) {
   const pathParams = [];
-
-  path = path.replace(/\/:([^/]+)/g, '/{$1}');
   const seen = new Set();
-  path = path.replace(/\{(.+?)\}/g, (match, name) => {
-    if (!seen.has(name)) {
-      seen.add(name);
-      pathParams.push({ name, description: `Parámetro de ruta: ${name}` });
-    }
-    return `{${name}}`;
-  });
 
-  return { path, pathParams, queryParams };
+  const path = rawPath
+    .replace(/\{\{([^}]+)\}\}/g, '{$1}')
+    .replace(/\/:([^/]+)/g, '/{$1}')
+    .replace(/\{([^}]+)\}/g, (match, name) => {
+      if (!seen.has(name)) {
+        seen.add(name);
+        pathParams.push({ name, description: `Parámetro de ruta: ${name}` });
+      }
+      return `{${name}}`;
+    });
+
+  return { path, pathParams };
 }
 
 /**
@@ -257,15 +274,16 @@ function processRequest(item, swagger, tagName) {
  */
 function extractPath(url) {
   try {
-    // Eliminar protocolo
+    // Eliminar protocolo y host
     let path = url.replace(/^https?:\/\/[^/]+/i, '');
+
+    // Eliminar el host expresado como variable ({{baseUrl}}/...): pertenece a servers, no a la ruta
+    path = path.replace(/^\{\{[^}]+\}\}/, '');
 
     // Eliminar parámetros de consulta
     path = path.replace(/\?.*$/, '');
 
-    // Reemplazar variables con formato {variable}
-    path = path.replace(/\{\{([^}]+)\}\}/g, '{$1}');
-
+    // Las variables de la ruta se normalizan en extractPathParams()
     return path;
   } catch (error) {
     console.error('Error al extraer la ruta:', error);
