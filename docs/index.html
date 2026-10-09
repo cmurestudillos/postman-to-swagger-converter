@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="es" data-theme="auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Postman to Swagger — Convierte colecciones Postman a OpenAPI 3.0</title>
+    <meta
+      name="description"
+      content="Aplicación de escritorio que convierte colecciones de Postman (.json) en especificaciones OpenAPI 3.0 en YAML, listas para Swagger Editor. Windows, macOS y Linux." />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://api.github.com" />
+    <link rel="icon" href="assets/icons/icon.png" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Postman to Swagger — Convierte colecciones Postman a OpenAPI 3.0" />
+    <meta
+      property="og:description"
+      content="De colección Postman a YAML OpenAPI 3.0 en un clic: carpetas como tags, parámetros, esquemas inferidos y autenticación. Gratis y de código abierto." />
+    <meta property="og:image" content="assets/screenshots/03-conversion.png" />
+    <meta property="og:url" content="https://cmurestudillos.github.io/postman-to-swagger-converter/" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#/">
+          <img src="assets/icons/icon.png" alt="" width="32" height="32" />
+          <span>Postman to Swagger</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="site-nav" id="siteNav" aria-label="Navegación principal">
+          <a href="#/" data-route-link="/">Inicio</a>
+          <a href="#/caracteristicas" data-route-link="/caracteristicas">Características</a>
+          <a href="#/capturas" data-route-link="/capturas">Capturas</a>
+          <a href="#/descargas" data-route-link="/descargas">Descargas</a>
+          <a href="#/documentacion" data-route-link="/documentacion">Documentación</a>
+          <a class="nav-cta" href="https://github.com/cmurestudillos/postman-to-swagger-converter" rel="noopener"
+            >GitHub</a
+          >
+          <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">
+            <span aria-hidden="true">🌗</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ══════════════════ INICIO ══════════════════ -->
+      <section class="view" data-route="/">
+        <div class="hero">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <p class="eyebrow">
+                <span class="dot"></span> Código abierto · MIT ·
+                <span id="heroVersion">v1.0.0</span>
+              </p>
+              <h1>De Postman a OpenAPI en un clic</h1>
+              <p class="lead">
+                Carga tu colección de Postman y obtén una especificación OpenAPI&nbsp;3.0 en YAML, lista para pegar en
+                Swagger Editor. Rutas, parámetros, cuerpos, esquemas y autenticación incluidos.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-lg" id="heroDownload" href="#/descargas"> ⬇ Descargar gratis </a>
+                <a class="btn btn-ghost btn-lg" href="#/capturas">Ver capturas</a>
+              </div>
+              <p class="hero-meta" id="heroMeta">Windows · macOS · Linux — funciona sin conexión, sin registro</p>
+            </div>
+
+            <figure class="hero-shot">
+              <img
+                src="assets/screenshots/03-conversion.png"
+                alt="Ventana de Postman to Swagger con la colección JSON a la izquierda y el YAML OpenAPI generado a la derecha"
+                width="1280"
+                height="1024"
+                loading="eager" />
+            </figure>
+          </div>
+        </div>
+
+        <div class="container">
+          <ul class="stat-row">
+            <li><strong>1</strong><span>clic para convertir</span></li>
+            <li><strong>3.0</strong><span>versión de OpenAPI</span></li>
+            <li><strong>4</strong><span>tipos de autenticación</span></li>
+            <li><strong>MIT</strong><span>licencia libre</span></li>
+          </ul>
+
+          <h2 class="section-title">Cómo funciona</h2>
+          <ol class="steps">
+            <li>
+              <span class="step-num">1</span>
+              <h3>Exporta tu colección</h3>
+              <p>
+                En Postman, <em>Export → Collection v2.1</em>. Obtendrás un archivo
+                <code>.postman_collection.json</code>.
+              </p>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <h3>Cárgala y convierte</h3>
+              <p>Selecciona el archivo, revisa el JSON formateado y pulsa <strong>Convertir</strong>.</p>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <h3>Usa el YAML</h3>
+              <p>
+                Guárdalo como <code>.yaml</code> o cópialo al portapapeles e impórtalo en
+                <a href="https://editor.swagger.io/" rel="noopener">Swagger Editor</a>.
+              </p>
+            </li>
+          </ol>
+
+          <div class="cta-band">
+            <div>
+              <h2>¿Listo para documentar tu API?</h2>
+              <p>
+                Instaladores para Windows, macOS y Linux. Todo el proceso es local: tu colección no sale de tu equipo.
+              </p>
+            </div>
+            <a class="btn btn-primary btn-lg" href="#/descargas">Ir a descargas</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ CARACTERÍSTICAS ══════════════════ -->
+      <section class="view" data-route="/caracteristicas">
+        <div class="container">
+          <h1 class="page-title">Características</h1>
+          <p class="page-lead">
+            Reaprovecha el trabajo que ya hiciste en Postman para tener una documentación OpenAPI sin escribirla a mano.
+          </p>
+
+          <div class="card-grid">
+            <article class="card">
+              <span class="card-icon">🔄</span>
+              <h3>Conversión en un clic</h3>
+              <p>Transforma colecciones Postman v2.1 en un documento OpenAPI&nbsp;3.0.0 en formato YAML.</p>
+            </article>
+            <article class="card">
+              <span class="card-icon">👁️</span>
+              <h3>Vista lado a lado</h3>
+              <p>El JSON de entrada, formateado, y el YAML de salida en la misma ventana para compararlos.</p>
+            </article>
+            <article class="card">
+              <span class="card-icon">🧬</span>
+              <h3>Esquemas inferidos</h3>
+              <p>
+                A partir de los ejemplos JSON de tus peticiones genera esquemas con tipos (<code>integer</code>,
+                <code>number</code>, <code>boolean</code>, arrays y objetos anidados) y ejemplos.
+              </p>
+            </article>
+            <article class="card">
+              <span class="card-icon">🔐</span>
+              <h3>Autenticación</h3>
+              <p>
+                Bearer, Basic, API Key y OAuth2 se traducen a <code>securitySchemes</code>, a nivel global o por
+                endpoint.
+              </p>
+            </article>
+            <article class="card">
+              <span class="card-icon">📁</span>
+              <h3>Carpetas como tags</h3>
+              <p>Cada carpeta de la colección se convierte en un tag, con su descripción, para agrupar endpoints.</p>
+            </article>
+            <article class="card">
+              <span class="card-icon">📋</span>
+              <h3>Guardar o copiar</h3>
+              <p>Exporta a <code>.yaml</code>/<code>.yml</code> con el diálogo nativo o cópialo al portapapeles.</p>
+            </article>
+          </div>
+
+          <h2 class="section-title">Qué se convierte</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>En Postman</th>
+                  <th>En OpenAPI 3.0</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nombre y descripción de la colección</td>
+                  <td><code>info.title</code> · <code>info.description</code></td>
+                </tr>
+                <tr>
+                  <td>Variables con <code>url</code> o <code>base</code> en el nombre (p. ej. <code>baseUrl</code>)</td>
+                  <td><code>servers</code></td>
+                </tr>
+                <tr>
+                  <td>Carpetas</td>
+                  <td><code>tags</code></td>
+                </tr>
+                <tr>
+                  <td>Peticiones (método + ruta)</td>
+                  <td><code>paths</code> con su operación y <code>summary</code></td>
+                </tr>
+                <tr>
+                  <td>Segmentos <code>:id</code></td>
+                  <td>Parámetros <code>in: path</code> obligatorios</td>
+                </tr>
+                <tr>
+                  <td>Query params</td>
+                  <td>Parámetros <code>in: query</code></td>
+                </tr>
+                <tr>
+                  <td>Body <code>raw</code> JSON · texto</td>
+                  <td><code>application/json</code> con esquema inferido · <code>text/plain</code></td>
+                </tr>
+                <tr>
+                  <td>Body <code>form-data</code> · <code>x-www-form-urlencoded</code></td>
+                  <td><code>multipart/form-data</code> · <code>application/x-www-form-urlencoded</code></td>
+                </tr>
+                <tr>
+                  <td>Auth de la colección · de una petición · <code>noauth</code></td>
+                  <td><code>security</code> global · por operación · <code>security: []</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 class="section-title">Ejemplo</h2>
+          <p class="muted">
+            Una petición <code>Crear pedido</code> con cuerpo JSON y la colección protegida con Bearer genera, entre
+            otras cosas:
+          </p>
+          <div class="compare">
+            <div>
+              <p class="compare-label">Postman (body raw JSON)</p>
+              <pre class="code-block"><code>{
+  "customerId": 42,
+  "items": [
+    { "productId": 7, "quantity": 2 }
+  ],
+  "notes": null
+}</code></pre>
+            </div>
+            <div>
+              <p class="compare-label">OpenAPI (components)</p>
+              <pre class="code-block"><code>CrearPedido:
+  type: object
+  properties:
+    customerId:
+      type: integer
+      example: 42
+    items:
+      type: array
+      items:
+        type: object
+        properties:
+          productId: { type: integer, example: 7 }
+          quantity: { type: integer, example: 2 }
+    notes:
+      nullable: true
+      type: string
+securitySchemes:
+  bearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT</code></pre>
+            </div>
+          </div>
+
+          <h2 class="section-title">Formatos soportados</h2>
+          <ul class="chip-list">
+            <li>Postman Collection v2.1</li>
+            <li>OpenAPI 3.0.0</li>
+            <li>Bearer (JWT)</li>
+            <li>Basic</li>
+            <li>API Key</li>
+            <li>OAuth2</li>
+            <li>raw · form-data · urlencoded</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ══════════════════ CAPTURAS ══════════════════ -->
+      <section class="view" data-route="/capturas">
+        <div class="container">
+          <h1 class="page-title">Capturas</h1>
+          <p class="page-lead">
+            Capturas reales de la aplicación convirtiendo una colección de ejemplo («Tienda API») con carpetas,
+            parámetros de ruta y query, cuerpos JSON y autenticación Bearer. Haz clic para ampliar.
+          </p>
+
+          <div class="gallery" id="gallery">
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/03-conversion.png"
+                data-caption="Conversión completada: la colección Postman a la izquierda y el YAML OpenAPI 3.0 generado a la derecha.">
+                <img
+                  src="assets/screenshots/03-conversion.png"
+                  alt="JSON de Postman y YAML de OpenAPI mostrados lado a lado tras la conversión"
+                  loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Conversión completada</strong> — <code>info</code>, <code>servers</code> y
+                <code>paths</code> generados a partir de la colección.
+              </figcaption>
+            </figure>
+
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/04-guardado.png"
+                data-caption="Esquema inferido del cuerpo JSON de una petición y registro del proceso en la parte inferior.">
+                <img
+                  src="assets/screenshots/04-guardado.png"
+                  alt="YAML con el esquema inferido de un cuerpo JSON y el panel de registros"
+                  loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Esquemas y registros</strong> — tipos inferidos del cuerpo JSON y log de cada paso.
+              </figcaption>
+            </figure>
+
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/02-coleccion-cargada.png"
+                data-caption="Colección cargada: el JSON se muestra formateado y se habilita el botón Convertir.">
+                <img
+                  src="assets/screenshots/02-coleccion-cargada.png"
+                  alt="Colección de Postman cargada y formateada en el panel de entrada"
+                  loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Colección cargada</strong> — el JSON se formatea y se activa <em>Convertir</em>.
+              </figcaption>
+            </figure>
+
+            <figure class="shot">
+              <button
+                class="shot-btn"
+                data-full="assets/screenshots/01-inicio.png"
+                data-caption="Pantalla inicial de Postman to Swagger, antes de seleccionar una colección.">
+                <img src="assets/screenshots/01-inicio.png" alt="Pantalla inicial de la aplicación" loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>Pantalla inicial</strong> — solo hay que elegir el archivo de la colección.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ DESCARGAS ══════════════════ -->
+      <section class="view" data-route="/descargas">
+        <div class="container">
+          <h1 class="page-title">Descargas</h1>
+          <p class="page-lead">
+            Última versión: <strong id="releaseTag">v1.0.0</strong>
+            <span id="releaseDate" class="muted"></span>
+          </p>
+
+          <div class="download-grid" id="downloadGrid">
+            <article class="download-card" data-os="windows">
+              <span class="os-icon" aria-hidden="true">🪟</span>
+              <h3>Windows</h3>
+              <p class="os-detail">Instalador <code>.exe</code> · 64 bits</p>
+              <a
+                class="btn btn-primary"
+                data-dl="windows"
+                href="https://github.com/cmurestudillos/postman-to-swagger-converter/releases/latest"
+                >Descargar</a
+              >
+              <p class="dl-size" data-size="windows">~97 MB</p>
+            </article>
+
+            <article class="download-card" data-os="mac">
+              <span class="os-icon" aria-hidden="true">🍎</span>
+              <h3>macOS</h3>
+              <p class="os-detail">Imagen <code>.dmg</code> · Apple Silicon</p>
+              <a
+                class="btn btn-primary"
+                data-dl="mac"
+                href="https://github.com/cmurestudillos/postman-to-swagger-converter/releases/latest"
+                >Descargar</a
+              >
+              <p class="dl-size" data-size="mac">~88 MB</p>
+            </article>
+
+            <article class="download-card" data-os="linux">
+              <span class="os-icon" aria-hidden="true">🐧</span>
+              <h3>Linux</h3>
+              <p class="os-detail">Ejecutable <code>.AppImage</code></p>
+              <a
+                class="btn btn-primary"
+                data-dl="linux"
+                href="https://github.com/cmurestudillos/postman-to-swagger-converter/releases/latest"
+                >Descargar</a
+              >
+              <p class="dl-size" data-size="linux">~98 MB</p>
+            </article>
+          </div>
+
+          <p class="muted small">
+            ¿Prefieres ver todos los archivos?
+            <a href="https://github.com/cmurestudillos/postman-to-swagger-converter/releases" rel="noopener"
+              >Todas las versiones en GitHub</a
+            >.
+          </p>
+
+          <h2 class="section-title">Notas de instalación</h2>
+          <div class="note-grid">
+            <div class="note">
+              <h3>🪟 Windows</h3>
+              <p>
+                SmartScreen puede avisar de que el editor es desconocido porque el instalador no está firmado. Pulsa
+                <em>Más información → Ejecutar de todas formas</em>.
+              </p>
+            </div>
+            <div class="note">
+              <h3>🍎 macOS</h3>
+              <p>
+                Si Gatekeeper bloquea la app, ábrela con clic derecho → <em>Abrir</em>, o ejecuta
+                <code>xattr -cr "/Applications/PtS Converter.app"</code>.
+              </p>
+            </div>
+            <div class="note">
+              <h3>🐧 Linux</h3>
+              <p>
+                Dale permisos de ejecución al AppImage:
+                <code>chmod +x PtS.Converter-1.0.0.AppImage</code> y lánzalo con doble clic.
+              </p>
+            </div>
+          </div>
+
+          <h2 class="section-title">Compilar desde el código</h2>
+          <pre class="code-block"><code>git clone https://github.com/cmurestudillos/postman-to-swagger-converter.git
+cd postman-to-swagger-converter
+pnpm install
+
+pnpm start           # ejecutar en desarrollo
+pnpm package:win     # generar instalador de Windows
+pnpm package:mac     # generar imagen de macOS
+pnpm package:linux   # generar AppImage</code></pre>
+          <p class="muted small">
+            Requisitos: Node.js 22.12+ y pnpm 11+. Los instaladores se generan en <code>release/</code>.
+          </p>
+        </div>
+      </section>
+
+      <!-- ══════════════════ DOCUMENTACIÓN ══════════════════ -->
+      <section class="view" data-route="/documentacion">
+        <div class="container docs-layout">
+          <article class="docs-body">
+            <h1 class="page-title">Documentación</h1>
+
+            <h2 id="uso">Guía de uso</h2>
+            <h3>1. Exportar desde Postman</h3>
+            <p>
+              Haz clic en los tres puntos de la colección → <em>Export</em> →
+              <strong>Collection v2.1</strong> (recomendado). Se guarda un archivo <code>.json</code>.
+            </p>
+
+            <h3>2. Seleccionar el archivo</h3>
+            <p>
+              Pulsa <strong>Seleccionar archivo Postman</strong> y elige el <code>.json</code>. El contenido aparece
+              formateado en el panel <em>JSON Entrada</em> y se habilita el botón <strong>Convertir</strong>.
+            </p>
+
+            <h3>3. Convertir</h3>
+            <p>
+              Pulsa <strong>Convertir</strong>. El documento OpenAPI aparece en el panel <em>YAML Salida</em> y el panel
+              de <em>Registros</em> indica si la conversión ha ido bien.
+            </p>
+
+            <h3>4. Exportar</h3>
+            <p>
+              <strong>Guardar YAML</strong> abre el diálogo nativo (por defecto <code>swagger-definition.yaml</code>);
+              <strong>Copiar al portapapeles</strong> lo deja listo para pegar en
+              <a href="https://editor.swagger.io/" rel="noopener">Swagger Editor</a>.
+            </p>
+
+            <h2 id="consejos">Consejos para mejores resultados</h2>
+            <ul class="roadmap">
+              <li><span class="tag">Carpetas</span> Organiza los endpoints en carpetas: se convierten en tags.</li>
+              <li><span class="tag">Nombres</span> Usa nombres descriptivos: pasan a ser el <code>summary</code>.</li>
+              <li>
+                <span class="tag">Ejemplos</span> Incluye cuerpos JSON de ejemplo en POST/PUT para que se infieran los
+                esquemas.
+              </li>
+              <li>
+                <span class="tag">Variables</span> Define la URL base en una variable como <code>baseUrl</code> para
+                obtener <code>servers</code>.
+              </li>
+              <li>
+                <span class="tag">Descripciones</span> Documenta colección y carpetas en Postman; se trasladan al YAML.
+              </li>
+            </ul>
+
+            <h2 id="limitaciones">Limitaciones conocidas</h2>
+            <p>
+              Las respuestas se generan con descripciones estándar (200, 400, 401, 404, 500); los ejemplos de respuesta
+              guardados en Postman no se convierten todavía. Los parámetros de ruta y query se tipan como
+              <code>string</code> y los esquemas de arrays se infieren a partir del primer elemento.
+            </p>
+
+            <h2 id="arquitectura">Arquitectura</h2>
+            <pre class="code-block"><code>├── main.js            # proceso principal: ventana, diálogos e IPC
+├── preload.js         # puente IPC seguro (contextIsolation activo)
+├── renderer.js        # interfaz: carga, conversión, guardado y logs
+├── index.html         # estructura de la ventana
+└── src/
+    ├── converter.js   # lógica de conversión Postman → OpenAPI
+    ├── models/        # PostmanCollection y SwaggerDocument
+    └── utils/         # utilidades de archivos y YAML</code></pre>
+            <p>
+              Construida con <strong>Electron</strong>, <strong>js-yaml</strong> para generar el YAML y
+              <strong>Lodash</strong>. Sin frameworks de UI: HTML, CSS y JavaScript.
+            </p>
+
+            <h2 id="roadmap">Roadmap</h2>
+            <ul class="roadmap">
+              <li><span class="tag">Editor</span> Editor integrado para modificar el YAML generado</li>
+              <li><span class="tag">Vista previa</span> Integración con Swagger UI</li>
+              <li><span class="tag">Validación</span> Validar el YAML generado contra la especificación</li>
+              <li><span class="tag">Opciones</span> Personalización del formato y cabeceras complejas</li>
+              <li><span class="tag">Inversa</span> Conversión de OpenAPI a Postman</li>
+            </ul>
+
+            <h2 id="contribuir">Contribuir</h2>
+            <p>
+              Los issues y pull requests son bienvenidos. Abre un
+              <a href="https://github.com/cmurestudillos/postman-to-swagger-converter/issues" rel="noopener">issue</a>
+              describiendo el bug (si puedes, adjunta una colección mínima que lo reproduzca) o la funcionalidad que
+              echas de menos.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <p class="brand-sm">🔄 Postman to Swagger</p>
+          <p class="muted small">Licencia MIT · Hecho por Carlos Mur</p>
+        </div>
+        <nav aria-label="Enlaces del pie">
+          <a href="https://github.com/cmurestudillos/postman-to-swagger-converter" rel="noopener">Repositorio</a>
+          <a href="https://github.com/cmurestudillos/postman-to-swagger-converter/releases" rel="noopener">Versiones</a>
+          <a href="https://github.com/cmurestudillos/postman-to-swagger-converter/issues" rel="noopener"
+            >Reportar un bug</a
+          >
+          <a href="https://github.com/cmurestudillos" rel="noopener">@cmurestudillos</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
+      <figure>
+        <img id="lightboxImg" src="" alt="" />
+        <figcaption id="lightboxCaption"></figcaption>
+      </figure>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

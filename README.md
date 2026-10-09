@@ -2,6 +2,16 @@
 
 Una aplicación de escritorio elegante y eficiente que convierte colecciones de Postman a formato YAML para Swagger/OpenAPI 3.0. Simplifica la documentación de APIs transformando tus colecciones de Postman existentes en especificaciones OpenAPI compatibles con Swagger Editor.
 
+🌐 **Web del proyecto:** [cmurestudillos.github.io/postman-to-swagger-converter](https://cmurestudillos.github.io/postman-to-swagger-converter/)
+
+## 📸 Capturas
+
+| Conversión completada                                        | Esquemas inferidos y registros                          |
+| ------------------------------------------------------------ | ------------------------------------------------------- |
+| ![Conversión](docs/assets/screenshots/03-conversion.png)     | ![Esquemas](docs/assets/screenshots/04-guardado.png)    |
+
+Más capturas en la [web del proyecto](https://cmurestudillos.github.io/postman-to-swagger-converter/#/capturas).
+
 ## ✨ Características
 
 - 🔄 **Conversión intuitiva**: Transforma colecciones Postman (.json) a YAML OpenAPI 3.0 con un solo clic
@@ -60,6 +70,26 @@ Para obtener conversiones óptimas, se recomienda:
 - [js-yaml](https://github.com/nodeca/js-yaml) - Conversión JSON/YAML
 - [Lodash](https://lodash.com/) - Utilidades JavaScript
 - [Node.js](https://nodejs.org/) - Entorno de ejecución
+
+## 🌐 Web del proyecto
+
+La carpeta `docs/` contiene la página pública, publicada con **GitHub Pages**:
+👉 [cmurestudillos.github.io/postman-to-swagger-converter](https://cmurestudillos.github.io/postman-to-swagger-converter/)
+
+- SPA en HTML/CSS/JS vanilla, sin dependencias ni build, con router por hash
+- Vistas: Inicio, Características, Capturas, Descargas y Documentación
+- Tema claro/oscuro y diseño responsive
+- Los enlaces de descarga se leen en vivo de la
+  [API de releases](https://api.github.com/repos/cmurestudillos/postman-to-swagger-converter/releases/latest):
+  detecta el sistema operativo del visitante y muestra nombre y tamaño reales de cada instalador,
+  con respaldo a la página de releases si la API no responde
+
+### Actualizar las capturas
+
+Las imágenes de `docs/assets/screenshots/` son capturas reales de la aplicación convirtiendo una colección
+de ejemplo, no mockups. Para regenerarlas tras un cambio de interfaz basta con cargar una colección,
+convertirla y capturar la ventana; también puede automatizarse arrancando Electron con un script que
+sustituya el handler `open-file` por un archivo fijo y use `webContents.capturePage()`.
 
 ## 🤝 Contribuciones
 
